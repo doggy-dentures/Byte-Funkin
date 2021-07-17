@@ -24,7 +24,7 @@ class StoryMenuState extends MusicBeatState
 	var scoreText:FlxText;
 
 	var weekData:Array<Dynamic> = [
-		['Tutorial', 'DONT ENTER THIS', 'IM BAD AT CODING ', 'GAME BREAKS IF I', 'DONT INCLUDE THIS'],
+		['Tutorial', 'このレベルを', 'プレイしないで。', 'これを含めないと', 'ゲームが誤作動する'],
 		['Rally Tally', 'Topspin Tussle', 'Skater Skirmish', 'Rocky Road', 'Boxbanned', 'Roundhouse Knockout', 'Outlets']
 	];
 	var curDifficulty:Int = 0;
@@ -76,15 +76,15 @@ class StoryMenuState extends MusicBeatState
 		persistentUpdate = persistentDraw = true;
 
 		scoreText = new FlxText(10, 3, 0, "SCORE: 49324858", 36);
-		scoreText.setFormat("Pixel Arial 11 Bold", 32);
+		scoreText.setFormat(Paths.font("pixelmplus12.ttf"), 32);
 
 		txtWeekTitle = new FlxText(FlxG.width * 0.7, 3, 0, "", 32);
-		txtWeekTitle.setFormat("Pixel Arial 11 Bold", 32, FlxColor.WHITE, RIGHT);
+		txtWeekTitle.setFormat(Paths.font("pixelmplus12.ttf"), 32, FlxColor.WHITE, RIGHT);
 		txtWeekTitle.alpha = 0.7;
 
 		var rankText:FlxText = new FlxText(0, 10);
 		rankText.text = 'RANK: GREAT';
-		rankText.setFormat(Paths.font("pixel.otf"), 32);
+		rankText.setFormat(Paths.font("pixelmplus12.ttf"), 32);
 		rankText.size = scoreText.size;
 		rankText.screenCenter(X);
 
@@ -193,7 +193,7 @@ class StoryMenuState extends MusicBeatState
 		// scoreText.setFormat('VCR OSD Mono', 32);
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, 0.5));
 
-		scoreText.text = "WEEK SCORE:" + lerpScore;
+		scoreText.text = "週のベストスコア：" + lerpScore;
 
 		txtWeekTitle.text = weekNames[curWeek].toUpperCase();
 		txtWeekTitle.x = FlxG.width - (txtWeekTitle.width + 10);
@@ -376,7 +376,7 @@ class StoryMenuState extends MusicBeatState
 		grpWeekCharacters.members[1].setCharacter(weekCharacters[curWeek][1]);
 		grpWeekCharacters.members[2].setCharacter(weekCharacters[curWeek][2]);
 
-		txtTracklist.text = "Tracks\n";
+		txtTracklist.text = "曲\n";
 		var stringThing:Array<String> = weekData[curWeek];
 
 		for (i in stringThing)

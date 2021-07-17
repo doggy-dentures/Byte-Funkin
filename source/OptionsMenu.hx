@@ -20,40 +20,40 @@ class OptionsMenu extends MusicBeatState
 	var curSelected:Int = 0;
 
 	var options:Array<OptionCatagory> = [
-		new OptionCatagory("Gameplay", [
+		new OptionCatagory("ゲームプレイ", [
 			new DFJKOption(controls),
-			new DownscrollOption("Change the layout of the strumline."),
-			new GhostTapOption("Ghost Tapping is when you tap a direction and it doesn't give you a miss."),
-			new Judgement("Customize your Hit Timings (LEFT or RIGHT)"),
+			new DownscrollOption("アローの由来"),
+			new GhostTapOption("アロー無しでボタン押す行動"),
+			new Judgement("タイミングの調整（左と右で）"),
 			#if desktop
-			new FPSCapOption("Cap your FPS (Left for -10, Right for +10. SHIFT to go faster)"),
+			new FPSCapOption("フレームレートの制限"),
 			#end
-			new ScrollSpeedOption("Change your scroll speed (Left for -0.1, right for +0.1. If it's at 1, it will be chart dependent)"),
-			new AccuracyDOption("Change how accuracy is calculated. (Accurate = Simple, Complex = Milisecond Based)"),
-			new ResetButtonOption("Toggle pressing R to gameover."),
+			new ScrollSpeedOption("アローの速さ（１なら、オートマチック）"),
+			new AccuracyDOption("正確なら、シンプル。複雑なら、ミリ秒によりけり。"),
+			new ResetButtonOption("Rキーを押したら、ゲームオーバー"),
 			// new OffsetMenu("Get a note offset based off of your inputs!"),
-			new CustomizeGameplay("Drag'n'Drop Gameplay Modules around to your preference")
+			new CustomizeGameplay("ゲームグラフィックスの位置調整")
 		]),
-		new OptionCatagory("Appearance", [
+		new OptionCatagory("グラフィック", [
 			#if desktop
-			new DistractionsAndEffectsOption("Toggle stage distractions that can hinder your gameplay."),
-			new RainbowFPSOption("Make the FPS Counter Rainbow (Only works with the FPS Counter toggled on and Flashing Lights toggled off)"),
-			new AccuracyOption("Display accuracy information."),
-			new NPSDisplayOption("Shows your current Notes Per Second."),
-			new SongPositionOption("Show the songs current position (as a bar)"),
+			new DistractionsAndEffectsOption(""),
+			new RainbowFPSOption(""),
+			new AccuracyOption(""),
+			new NPSDisplayOption(""),
+			new SongPositionOption(""),
 			#else
 			new DistractionsAndEffectsOption("Toggle stage distractions that can hinder your gameplay.")
 			#end
 		]),
 		
-		new OptionCatagory("Misc", [
+		new OptionCatagory("他", [
 			#if desktop
-			new FPSOption("Toggle the FPS Counter"),
-			new ReplayOption("View replays"),
+			new FPSOption(""),
+			new ReplayOption(""),
 			#end
-			new FlashingLightsOption("Toggle flashing lights that can cause epileptic seizures and strain."),
-			new WatermarkOption("Enable and disable all watermarks from the engine."),
-			new BotPlay("Showcase your charts and mods with autoplay.")
+			new FlashingLightsOption("目に障る可能性のある閃光"),
+			new WatermarkOption(""),
+			new BotPlay("")
 		])
 		
 	];
@@ -89,9 +89,9 @@ class OptionsMenu extends MusicBeatState
 
 		currentDescription = "none";
 
-		versionShit = new FlxText(5, FlxG.height - 18, 0, "Offset (Left, Right): " + FlxG.save.data.offset + " - Description - " + currentDescription, 12);
+		versionShit = new FlxText(5, FlxG.height - 18, 0, "オフセット（右と左とSHIFTで変更できる）: " + FlxG.save.data.offset + " - 説明 - " + currentDescription, 12);
 		versionShit.scrollFactor.set();
-		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		versionShit.setFormat(Paths.font("pixelmplus12.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
 
 		super.create();
@@ -159,7 +159,7 @@ class OptionsMenu extends MusicBeatState
 					else if (FlxG.keys.pressed.LEFT)
 						FlxG.save.data.offset -= 0.1;
 					
-					versionShit.text = "Offset (Left, Right, Shift for slow): " + HelperFunctions.truncateFloat(FlxG.save.data.offset,2) + " - Description - " + currentDescription;
+					versionShit.text = "オフセット（右と左とSHIFTで変更できる）: " + HelperFunctions.truncateFloat(FlxG.save.data.offset,2) + " - 説明 - " + currentDescription;
 				}
 			}
 			else
@@ -176,7 +176,7 @@ class OptionsMenu extends MusicBeatState
 					else if (FlxG.keys.pressed.LEFT)
 						FlxG.save.data.offset -= 0.1;
 				
-				versionShit.text = "Offset (Left, Right, Shift for slow): " + HelperFunctions.truncateFloat(FlxG.save.data.offset,2) + " - Description - " + currentDescription;
+				versionShit.text = "オフセット（右と左とSHIFTで変更できる）: " + HelperFunctions.truncateFloat(FlxG.save.data.offset,2) + " - 説明 - " + currentDescription;
 			}
 		
 
@@ -233,8 +233,8 @@ class OptionsMenu extends MusicBeatState
 		if (isCat)
 			currentDescription = currentSelectedCat.getOptions()[curSelected].getDescription();
 		else
-			currentDescription = "Please select a category";
-		versionShit.text = "Offset (Left, Right, Shift for slow): " + HelperFunctions.truncateFloat(FlxG.save.data.offset,2) + " - Description - " + currentDescription;
+			currentDescription = "選択してください";
+		versionShit.text = "オフセット（右と左とSHIFTで変更できる）: " + HelperFunctions.truncateFloat(FlxG.save.data.offset,2) + " - 説明 - " + currentDescription;
 
 		// selector.y = (70 * curSelected) + 30;
 
